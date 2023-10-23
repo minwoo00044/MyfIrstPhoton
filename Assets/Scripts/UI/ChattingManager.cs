@@ -32,7 +32,6 @@ public class ChattingManager : MonoBehaviourPunCallbacks
         chatLog.text = "";
         chatInput.text = "";
         PhotonNetwork.SendRate = 10;  // Default is 20
-
         // Set the serialization rate (number of times per second that the objects' state is serialized)
         PhotonNetwork.SerializationRate = 5;  // Default is 10
     }

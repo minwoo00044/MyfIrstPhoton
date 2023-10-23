@@ -75,7 +75,6 @@ public class EnterManager : MonoBehaviourPunCallbacks
     IEnumerator CreatePlayer()
     {
         PhotonNetwork.Instantiate("Player", new Vector3(0, 10, 0), Quaternion.identity, 0);
-
         yield return null;
     }
 }

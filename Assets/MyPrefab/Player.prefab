@@ -428,6 +428,7 @@ MonoBehaviour:
   smoothTime: 0.1
   velocity: 0
   mouseSensitivity: 100
+  chatPanel: {fileID: 0}
 --- !u!114 &5471946857597037041
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -447,6 +448,7 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+  - {fileID: 8084337673975403946}
   - {fileID: 5053836990849211030}
   sceneViewId: 0
   InstantiationId: 0
@@ -465,7 +467,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_SynchronizePosition: 1
   m_SynchronizeRotation: 1
-  m_SynchronizeScale: 1
+  m_SynchronizeScale: 0
   m_UseLocal: 1
 --- !u!1 &585577564486905654
 GameObject:
