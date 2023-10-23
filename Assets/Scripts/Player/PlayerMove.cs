@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMove : MonoBehaviourPunCallbacks,IPunObservable
+public class PlayerMove : MonoBehaviourPunCallbacks, IPunObservable
 {
     Vector3 dir;
     Animator animator;
@@ -11,17 +11,18 @@ public class PlayerMove : MonoBehaviourPunCallbacks,IPunObservable
     [SerializeField] float speed;
 
     [SerializeField] private float currentSpeed = 0f;
-    [SerializeField] private float smoothTime = 0.1f; 
+    [SerializeField] private float smoothTime = 0.1f;
     [SerializeField] private float velocity = 0f;
 
-    private Transform playerCamera; 
-    [SerializeField] private float mouseSensitivity = 100f; 
+    private Transform playerCamera;
+    [SerializeField] private float mouseSensitivity = 100f;
 
     private float xRotation = 0f;
 
     private bool isCursorLocked = true;
     private Quaternion networkRotation = Quaternion.identity;
 
+    [SerializeField] private GameObject chatPanel;
     private void Start()
     {
 
@@ -32,14 +33,20 @@ public class PlayerMove : MonoBehaviourPunCallbacks,IPunObservable
             controller = GetComponent<CharacterController>();
             playerCamera = GameObject.Find("CameraRig").transform;
             animator.SetFloat("MoveSpeed", currentSpeed);
+            chatPanel = GameObject.FindGameObjectWithTag("ChatPanel");
+            chatPanel.SetActive(false);
 
+            PhotonNetwork.SendRate = 10;  // Default is 20
+
+            // Set the serialization rate (number of times per second that the objects' state is serialized)
+            PhotonNetwork.SerializationRate = 5;  // Default is 10
         }
 
     }
 
     private void Update()
     {
-        if (!photonView.IsMine) return;
+        if (!photonView.IsMine || chatPanel.activeInHierarchy) return;
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
